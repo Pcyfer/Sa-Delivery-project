@@ -83,12 +83,12 @@ function Orders() {
   };
 
   interface TypeData {
-    OrderID?: number;
+    ID?: number;
     StateID?: number;
   }
 
   const OrderData: TypeData = {
-    OrderID: order,
+    ID: order,
     StateID: state
 
   }
