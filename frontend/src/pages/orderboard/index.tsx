@@ -15,7 +15,7 @@ function Orders() {
     },
     {
       title: "ผู้สั่งซื้อ",
-      dataIndex: "StateID",
+      dataIndex: "UserID",
       key: "stateid",
     },
     // {
@@ -66,7 +66,8 @@ function Orders() {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState<String>();
   const [state, setState] = useState<number>(2);
-
+  const [UserId, setUserId] = useState<number>();
+  const [FoodId, setFoodId] = useState<number>();
   
   
   const getOrders = async () => {
@@ -79,16 +80,22 @@ function Orders() {
   const showModal = (val: OrderInterface) => {
     setModalText(`ต้องการรับออร์เดอร์ "${val.ID}" หรือไม่`);
     setOrder(val.ID);
+    setUserId(val.UserID);
+    setFoodId(val.FoodID);
     setOpen(true);
   };
 
   interface TypeData {
     ID?: number;
+    UserID?: number;
+    FoodID?: number;
     StateID?: number;
   }
 
   const OrderData: TypeData = {
     ID: order,
+    UserID: UserId,
+    FoodID: FoodId,
     StateID: state
 
   }
