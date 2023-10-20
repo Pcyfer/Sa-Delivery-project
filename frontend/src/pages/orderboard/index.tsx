@@ -69,7 +69,21 @@ function Orders() {
   const [UserId, setUserId] = useState<number>();
   const [FoodId, setFoodId] = useState<number>();
   
-  
+  interface TypeData {
+    ID?: number;
+    UserID?: number;
+    FoodID?: number;
+    StateID?: number;
+  }
+
+  const OrderData: TypeData = {
+    ID: order,
+    UserID: UserId,
+    FoodID: FoodId,
+    StateID: state
+
+  }
+
   const getOrders = async () => {
     let res = await GetOrders();
     if (res) {
@@ -85,20 +99,7 @@ function Orders() {
     setOpen(true);
   };
 
-  interface TypeData {
-    ID?: number;
-    UserID?: number;
-    FoodID?: number;
-    StateID?: number;
-  }
-
-  const OrderData: TypeData = {
-    ID: order,
-    UserID: UserId,
-    FoodID: FoodId,
-    StateID: state
-
-  }
+  
 
   const handleOk = async () => {
     setConfirmLoading(true);
