@@ -13,7 +13,7 @@ import logo from "./assets/logo.png";
 import "./t.css";
 
 import Order from "./pages/orderboard";
-import OrderFoods from "./pages/orderboard/detail";
+
 // import History from "./pages/history";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -107,7 +107,7 @@ const App: React.FC = () => {
             >
               <Routes>
                 <Route path="/" element={<Order />} />
-                <Route path="/orderboard/detail/:id" element={<OrderFoods />} />
+                
               </Routes>
             </div>
           </Content>

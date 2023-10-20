@@ -52,19 +52,23 @@ function Orders() {
     },
   ];
 
+  
+
   const navigate = useNavigate();
 
   const [orders, setOrders] = useState<OrderInterface[]>([]);
 
-  const [order, setOrder] = useState<OrderInterface>();
+  const [order, setOrder] = useState<number>();
 
   const [messageApi, contextHolder] = message.useMessage();
 
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState<String>();
-  const [deleteId, setDeleteId] = useState<Number>();
+  const [state, setState] = useState<number>(2);
 
+  
+  
   const getOrders = async () => {
     let res = await GetOrders();
     if (res) {
@@ -74,13 +78,24 @@ function Orders() {
 
   const showModal = (val: OrderInterface) => {
     setModalText(`ต้องการรับออร์เดอร์ "${val.ID}" หรือไม่`);
-    setDeleteId(val.ID);
+    setOrder(val.ID);
     setOpen(true);
   };
 
+  interface TypeData {
+    OrderID?: number;
+    StateID?: number;
+  }
+
+  const OrderData: TypeData = {
+    OrderID: order,
+    StateID: state
+
+  }
+
   const handleOk = async () => {
     setConfirmLoading(true);
-    let res = await DeleteOrderByID(deleteId);
+    let res = await UpdateOrder(OrderData);
     if (res) {
       setOpen(false);
       messageApi.open({
